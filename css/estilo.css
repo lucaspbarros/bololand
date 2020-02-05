@@ -1,0 +1,105 @@
+/*Cores*/
+.bg-azul{background-color: rgb(51, 173, 255)}/*#33adff*/
+.azul{color: rgb(51, 173, 255)}/*#33adff*/
+.bg-branco{background-color: rgb(255, 255, 255)}
+.branco{color: rgb(255, 255, 255)}
+.bg-azul-claro{background-color: rgb(135, 206, 253)}
+
+.material-icons{font-size: 23pt;}
+.full{width: 100%;}
+.center{text-align: center; margin: auto;}
+
+header{
+    height: auto;
+    min-height: 400px;
+    background-image: url(../img/produtos/bake-1003685_960_720.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-top:50px
+}
+
+header img{
+    width: 100%;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.nav-item a{
+    color:#fff;
+    padding: 10px 20px !important;
+    transition: .5s;
+}
+
+.nav-item a:hover {
+    background-color: #fff;
+    color: #222;
+    box-shadow: 2px 2px 2px #222;
+    /* border-radius: 10px; */
+}
+
+section{
+     padding: 80px 0;
+}
+
+#produtos h2{
+    padding: 20px 0;
+}
+
+#produtos .itens{
+    padding: 50px;
+    border: solid 1px transparent;
+}
+
+#produtos .itens:hover{
+    border: solid 1px #ddd;
+    background-color: #ddd;
+}
+
+#clientes .texto{
+    border-left: solid 2px #ddd;
+    padding: 20px;
+}
+
+#clientes .foto img{
+    width: 100%;
+    padding: 20px;
+}
+
+#clientes .comentario{
+    padding: 20px 0;
+}
+
+.texto-carrosel{
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    background-color: #22222277;
+}
+
+footer ul{
+    list-style: none;
+    padding: 20px;
+}
+
+footer ul li a{
+    color:#fff
+}
+
+.redesocial{
+    width: 50px;
+}
+
+@media screen and (max-width: 460px){
+    #propag-1, #propag-2{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) and (min-width: 600px){
+    #propag-2{
+        display: none;
+    }
+}
