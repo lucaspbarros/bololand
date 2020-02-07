@@ -1,5 +1,6 @@
 <?php
-if(!empty($_POST)){
+
+if (!empty($_POST)) {
     $nome = trim($_POST["nome"]);
     $email = trim($_POST["email"]);
     $tel = trim($_POST["tel"]);
@@ -12,7 +13,8 @@ if(!empty($_POST)){
     $cidade = trim($_POST["cidade"]);
     $uf = trim($_POST["uf"]);
 
-    $sql = "insert into endereco (cep, logradouro, bairro, cidade, uf) values ('$cep', '$logradouro','$bairro', '$cidade', '$uf')";
+    $sql = "insert into endereco (cep, logradouro, bairro, cidade, uf) values ('$cep' , '$logradouro', '$bairro', '$cidade', '$uf')";
+
     $sqlUser = "insert into usuario (nome, email, tel, numero, complemento, senha, cep) value ('$nome', '$email', '$tel', '$numero', '$complemento', '$senha', '$cep')";
 
     $conn = mysqli_connect("localhost", "root", "", "bololand");
@@ -20,8 +22,8 @@ if(!empty($_POST)){
     mysqli_query($conn, htmlspecialchars($sql)) or die(mysqli_error($conn));
     mysqli_query($conn, htmlspecialchars($sqlUser)) or die(mysqli_error($conn));
     mysqli_close($conn);
-    
 }
+
 ?>
 
 <section class="container bg-branco">
@@ -80,4 +82,3 @@ if(!empty($_POST)){
 
     </form>
 </section>
-

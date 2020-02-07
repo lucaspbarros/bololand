@@ -3,7 +3,7 @@
 function aviso($msg)
 {
     echo "
-        <div class='alert alert-success'>
+        <div class='alert alert-success aviso'>
             <h3> Avisos </h3>
             $msg
         </div>
