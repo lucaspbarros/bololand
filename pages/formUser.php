@@ -13,14 +13,32 @@ if (!empty($_POST)) {
     $cidade = trim($_POST["cidade"]);
     $uf = trim($_POST["uf"]);
 
+
     $sql = "insert into endereco (cep, logradouro, bairro, cidade, uf) values ('$cep' , '$logradouro', '$bairro', '$cidade', '$uf')";
 
     $sqlUser = "insert into usuario (nome, email, tel, numero, complemento, senha, cep) value ('$nome', '$email', '$tel', '$numero', '$complemento', '$senha', '$cep')";
 
-    $conn = mysqli_connect("localhost", "root", "", "bololand");
+    $sqlCep= "select cep from endereco where cep = $cep";
+
+    //conecta o banco de dados
+    $conn = mysqli_connect(LOCAL, USER, PASS, BASE);
     mysqli_set_charset($conn, "utf8");
-    mysqli_query($conn, htmlspecialchars($sql)) or die(mysqli_error($conn));
-    mysqli_query($conn, htmlspecialchars($sqlUser)) or die(mysqli_error($conn));
+
+    //cadastro do cep - endereco
+    $result = mysqli_query($conn, htmlspecialchars($sqlCep)) or die(mysqli_error($conn));
+
+    if (mysqli_num_rows($result) == 0) {
+        //cadastro do cep - endereco
+        $result = mysqli_query($conn, htmlspecialchars($sql)) or die(mysqli_error($conn));
+    }
+
+    //cadasto do usuario
+    $salvo = mysqli_query($conn, htmlspecialchars($sqlUser)) or die(mysqli_error($conn));
+    if ($salvo){
+        echo "<div class='alert-success'> Salvo </div>";
+    } else {
+        echo "<div class='alert-success'> Erro ao salvar! </div>";
+    }
     mysqli_close($conn);
 }
 
@@ -52,23 +70,23 @@ if (!empty($_POST)) {
 
         <div class="form-group">
             <label>CEP</label>
-            <input type="text" class="form-control" name="cep" maxlength="9">
+            <input type="text" class="form-control" name="cep" maxlength="9" id="cep" onblur="pesquisacep(this.value);">
         </div>
         <div class="form-group">
             <label>Endereço</label>
-            <input type="text" class="form-control" name="logradouro" maxlength="150">
+            <input type="text" class="form-control" name="logradouro" maxlength="150" id="rua">
         </div>
         <div class="form-group">
             <label>Bairro</label>
-            <input type="text" class="form-control" name="bairro" maxlength="50">
+            <input type="text" class="form-control" name="bairro" maxlength="50" id="bairro">
         </div>
         <div class="form-group">
             <label>Cidade</label>
-            <input type="text" class="form-control" name="cidade" maxlength="50">
+            <input type="text" class="form-control" name="cidade" maxlength="50" id="cidade">
         </div>
         <div class="form-group">
             <label>Estado</label>
-            <input type="text" class="form-control" name="uf" maxlength="2">
+            <input type="text" class="form-control" name="uf" maxlength="2" id="uf">
         </div>
 
         <div class="form-group">
