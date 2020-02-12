@@ -1,0 +1,13 @@
+/*Cores*/
+.bg-azul { background-color: rgb(51, 173, 255) } /*#33adff*/
+.azul { color: rgb(51, 173, 255) } /*#33adff*/
+.bg-branco { background-color: rgb(255, 255, 255) }
+.branco { color: rgb(255, 255, 255) }
+.bg-azul-claro { background-color: rgb(135, 206, 253) }
+
+.material-icons { font-size: 23pt;}
+.full { width: 100%; }
+.center {
+    text-align: center;
+    margin: auto;
+}

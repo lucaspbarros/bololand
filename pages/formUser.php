@@ -1,5 +1,5 @@
 <?php
-
+include_once('mensagens.php');
 if (!empty($_POST)) {
     $nome = trim($_POST["nome"]);
     $email = trim($_POST["email"]);
@@ -11,34 +11,35 @@ if (!empty($_POST)) {
     $logradouro = trim($_POST["logradouro"]);
     $bairro = trim($_POST["bairro"]);
     $cidade = trim($_POST["cidade"]);
-    $uf = trim($_POST["uf"]);
-
-
+    $uf = trim($_POST["uf"]); 
+    
     $sql = "insert into endereco (cep, logradouro, bairro, cidade, uf) values ('$cep' , '$logradouro', '$bairro', '$cidade', '$uf')";
 
-    $sqlUser = "insert into usuario (nome, email, tel, numero, complemento, senha, cep) value ('$nome', '$email', '$tel', '$numero', '$complemento', '$senha', '$cep')";
+    $sqlUser = "insert into usuario (nome, email, tel, numero, complemento, senha, cep) values ('$nome', '$email', '$tel', '$numero', '$complemento', '$senha', '$cep')";
 
-    $sqlCep= "select cep from endereco where cep = $cep";
-
-    //conecta o banco de dados
+    $sqlCep = "select cep from endereco where cep = $cep";
+    
+    //Conecta o banco de dados
     $conn = mysqli_connect(LOCAL, USER, PASS, BASE);
     mysqli_set_charset($conn, "utf8");
 
-    //cadastro do cep - endereco
+    //Busca do CEP - Endereco
     $result = mysqli_query($conn, htmlspecialchars($sqlCep)) or die(mysqli_error($conn));
-
+     
     if (mysqli_num_rows($result) == 0) {
-        //cadastro do cep - endereco
-        $result = mysqli_query($conn, htmlspecialchars($sql)) or die(mysqli_error($conn));
+        //Cadastro do CEP - Endereco
+        mysqli_query($conn, htmlspecialchars($sql)) or die(mysqli_error($conn));
     }
-
-    //cadasto do usuario
+    //Cadastro do Usuario
     $salvo = mysqli_query($conn, htmlspecialchars($sqlUser)) or die(mysqli_error($conn));
     if ($salvo){
-        echo "<div class='alert-success'> Salvo </div>";
+        //echo "<div class='alert alert-success'> Salvo </div>";
+        aviso("Salvo");
     } else {
-        echo "<div class='alert-success'> Erro ao salvar! </div>";
+        //echo "<div class='alert alert-danger'> Erro ao salvar! </div>";
+        erro("Erro ao Salvar");
     }
+
     mysqli_close($conn);
 }
 
@@ -49,11 +50,11 @@ if (!empty($_POST)) {
     <form method="post" action="index.php?pag=cad">
         <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" name="nome">
+            <input type="text" class="form-control" name="nome" required>
         </div>
         <div class="form-group">
             <label>E-mail</label>
-            <input type="email" class="form-control" name="email">
+            <input type="email" class="form-control" name="email" required>
         </div>
         <div class="form-group">
             <label>Telefone</label>
@@ -70,11 +71,11 @@ if (!empty($_POST)) {
 
         <div class="form-group">
             <label>CEP</label>
-            <input type="text" class="form-control" name="cep" maxlength="9" id="cep" onblur="pesquisacep(this.value);">
+            <input type="text" class="form-control" name="cep" maxlength="9" id="cep" onblur="pesquisacep(this.value);" required>
         </div>
         <div class="form-group">
             <label>Endereço</label>
-            <input type="text" class="form-control" name="logradouro" maxlength="150" id="rua">
+            <input type="text" class="form-control" name="logradouro" maxlength="100" id="rua">
         </div>
         <div class="form-group">
             <label>Bairro</label>
@@ -97,6 +98,5 @@ if (!empty($_POST)) {
             <button type="submit" class="btn bg-azul branco">Enviar</button>
             <button type="reset" class="btn btn-danger branco">Cancelar</button>
         </div>
-
     </form>
 </section>

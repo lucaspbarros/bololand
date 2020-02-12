@@ -1,0 +1,45 @@
+body {
+    font-size: .875rem;
+    margin-top: 80px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    height: 100%;
+    display: block;
+    transition: all 0.5s ease-in;
+    overflow: auto;
+}
+
+.sidebarHide {
+    transition: all 0.5s ease-out;
+    width: 0;
+}
+
+.sidebar a:hover {
+    background-color: rgb(184, 183, 182);
+}
+
+.main {
+    margin-left: 18%;
+}
+
+.material-icons {
+    font-size: inherit;
+    padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin-top: 160px;
+    }
+    .sidebar {
+        padding-top: 120px;
+    }
+}

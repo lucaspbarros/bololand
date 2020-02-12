@@ -9,7 +9,7 @@ function dao($sql)
     mysqli_set_charset($conn, "utf8");
 
     //Mostra a linha do SQL
-    var_dump("SQL: " . $sql);
+    //var_dump("SQL: " . $sql);
 
     //Busca os dados do banco de dados
     $result = mysqli_query($conn, htmlspecialchars($sql)) or die(mysqli_error($conn));
